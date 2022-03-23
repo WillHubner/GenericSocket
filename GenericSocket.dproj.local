@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/03/04 17:28:36.000.200,=rtl.dcp</Transaction>
+    <Transaction>2022/03/04 17:28:44.000.197,C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Package1.dproj=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\GenericSocket.dproj</Transaction>
+    <Transaction>2022/03/04 17:29:19.000.172,C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\GenericSocket.dproj=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\GenericSocket.dproj</Transaction>
+    <Transaction>2022/03/04 17:29:48.000.227,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\src\GenericSocket.Message.pas</Transaction>
+    <Transaction>2022/03/04 17:29:48.000.295,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\src\GenericSocket.Server.pas</Transaction>
+    <Transaction>2022/03/04 17:29:48.000.157,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\src\GenericSocket.Client.pas</Transaction>
+    <Transaction>2022/03/04 17:29:48.000.253,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\src\GenericSocket.pas</Transaction>
+    <Transaction>2022/03/04 17:29:48.000.184,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\Package\src\GenericSocket.Interfaces.pas</Transaction>
+    <Transaction>2022/03/04 17:29:59.000.957,=IndyProtocols.dcp</Transaction>
+    <Transaction>2022/03/04 17:29:59.000.977,=IndyCore.dcp</Transaction>
+    <Transaction>2022/03/04 17:29:59.000.919,=IndySystem.dcp</Transaction>
+  </Transactions>
+</BorlandProject>
