@@ -25,6 +25,7 @@ type
     FHost : String;
     FPort : Integer;
     FTask : TThread;
+    FName : String;
 
     procedure OnDisconnect(Sender: TObject);
     procedure OnStatus(ASender: TObject; const AStatus: TIdStatus; const AStatusText: string);
@@ -43,6 +44,7 @@ type
     function Disconnet : iSocketClient;
     function Host(vHost : String) : iSocketClient;
     function Port(vPort : Integer) : iSocketClient;
+    function Connect(vHost : String; vPort:  Integer; Name : String) : iSocketClient; overload;
 
     function Connected : Boolean;
 
@@ -106,6 +108,13 @@ begin
   Self.Connect;
 end;
 
+function TSocketClient.Connect(vHost: String; vPort: Integer;
+  Name: String): iSocketClient;
+begin
+  FName := Name;
+  Self.Connect(vHost, vPort);
+end;
+
 function TSocketClient.Connected: Boolean;
 begin
   Result := FConnected;
@@ -116,6 +125,7 @@ begin
   FCallbacks := TDictionary<String, TSocketResponse>.Create;
   FTask := TThread.CreateAnonymousThread( Self.VerifySocketMessages );
   FTask.FreeOnTerminate := False;
+  FName := TGUID.NewGuid.ToString;
 
   FClient := TIdTCPClient.Create(nil);
   FClient.OnStatus := OnStatus;
@@ -158,7 +168,7 @@ function TSocketClient.onConnect(Message: String): String;
 var
   JSONConnect : TJSONObject;
 begin
-  JSONConnect := TJSONObject.Create.AddPair('name', TGUID.NewGuid.ToString);
+  JSONConnect := TJSONObject.Create.AddPair('name', FName);
 
   try
     Result := JSONConnect.ToJSON;

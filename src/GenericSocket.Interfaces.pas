@@ -28,6 +28,7 @@ type
     function RegisterCallback(Param : String; CallbackProcedure : TSocketResponse) : iSocketClient;
     function Connect : iSocketClient; overload;
     function Connect(vHost : String; vPort:  Integer) : iSocketClient; overload;
+    function Connect(vHost : String; vPort:  Integer; Name : String) : iSocketClient; overload;
     function Disconnet : iSocketClient;
 
     function Connected : Boolean;
