@@ -16,7 +16,8 @@ type
   end;
 
   iSocketServer = interface
-    function Start : iSocketServer;
+    function Start : iSocketServer; overload;
+    function Start(Port : Integer) : iSocketServer; overload;
     function Stop : iSocketServer;
     function Clients : TArray<String>;
     function Send(SocketName : String; JSONMessage : TJSONValue) : iSocketMessage; overload;

@@ -31,7 +31,8 @@ type
   public
     class function New : iSocketServer;
 
-    function Start : iSocketServer;
+    function Start : iSocketServer; overload;
+    function Start(Port : Integer) : iSocketServer; overload;
     function Stop : iSocketServer;
     function Clients : TArray<String>;
     function Send(SocketName : String; JSONMessage : TJSONValue) : iSocketMessage; overload;
@@ -135,10 +136,12 @@ begin
   FServer.DefaultPort := FPort;
   FServer.Active := True;
   FRunning := True;
+end;
 
-  if IsConsole then
-    while FRunning do
-      GetDefaultEvent.WaitFor();
+function TSocketServer.Start(Port: Integer): iSocketServer;
+begin
+  FPort := Port;
+  Self.Start;
 end;
 
 function TSocketServer.Stop: iSocketServer;
