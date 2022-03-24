@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/02/25 13:56:15.000.454,=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2022/02/25 13:56:46.000.352,C:\Users\Willian Hubner\Desktop\2k22\ClientTCP\ClientTCP.fmx=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit5.fmx</Transaction>
+    <Transaction>2022/02/25 13:56:46.000.352,C:\Users\Willian Hubner\Desktop\2k22\ClientTCP\ClientTCP.pas=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2022/02/25 13:56:51.000.070,C:\Users\Willian Hubner\Desktop\2k22\ClientTCP\Project1.dproj=C:\Users\Willian Hubner\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/02/25 13:58:58.000.282,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Project1.dproj=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\ClienteTCP.dproj</Transaction>
+    <Transaction>2022/02/25 13:59:06.000.495,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\ClientTCP.fmx=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Form1.fmx</Transaction>
+    <Transaction>2022/02/25 13:59:06.000.495,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\ClientTCP.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Form1.pas</Transaction>
+    <Transaction>2022/02/25 13:59:16.000.297,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Form1.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit1.pas</Transaction>
+    <Transaction>2022/02/25 13:59:16.000.297,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Form1.fmx=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit1.fmx</Transaction>
+    <Transaction>2022/03/02 17:57:46.000.762,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\soketTCP\src\GenericSocket.pas</Transaction>
+    <Transaction>2022/03/03 17:18:01.000.584,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:18:19.000.980,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\soketTCP\src\GenericSocket.Server.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:20:50.000.074,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:21:00.000.693,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\soketTCP\src\GenericSocket.Client.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:21:59.000.184,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:22:11.000.612,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\soketTCP\src\GenericSocket.Message.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:26:06.000.861,=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+    <Transaction>2022/03/03 17:26:24.000.364,C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\soketTCP\src\GenericSocket.Interfaces.pas=C:\Users\Willian Hubner\Desktop\2k22\TCPSocketServer\ClientTCP\Unit2.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>

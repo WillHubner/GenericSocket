@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3FDDC1DA-379A-4336-83D2-712EA6ED3C00}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="soketTCP\ServerTCP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ClientTCP\ClienteTCP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ConsoleServer\HorseServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Package\GenericSocket.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ServerTCP">
+        <MSBuild Projects="soketTCP\ServerTCP.dproj"/>
+    </Target>
+    <Target Name="ServerTCP:Clean">
+        <MSBuild Projects="soketTCP\ServerTCP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerTCP:Make">
+        <MSBuild Projects="soketTCP\ServerTCP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClienteTCP">
+        <MSBuild Projects="ClientTCP\ClienteTCP.dproj"/>
+    </Target>
+    <Target Name="ClienteTCP:Clean">
+        <MSBuild Projects="ClientTCP\ClienteTCP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClienteTCP:Make">
+        <MSBuild Projects="ClientTCP\ClienteTCP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HorseServer">
+        <MSBuild Projects="ConsoleServer\HorseServer.dproj"/>
+    </Target>
+    <Target Name="HorseServer:Clean">
+        <MSBuild Projects="ConsoleServer\HorseServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HorseServer:Make">
+        <MSBuild Projects="ConsoleServer\HorseServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GenericSocket">
+        <MSBuild Projects="Package\GenericSocket.dproj"/>
+    </Target>
+    <Target Name="GenericSocket:Clean">
+        <MSBuild Projects="Package\GenericSocket.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GenericSocket:Make">
+        <MSBuild Projects="Package\GenericSocket.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ServerTCP;ClienteTCP;HorseServer;GenericSocket"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ServerTCP:Clean;ClienteTCP:Clean;HorseServer:Clean;GenericSocket:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ServerTCP:Make;ClienteTCP:Make;HorseServer:Make;GenericSocket:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
