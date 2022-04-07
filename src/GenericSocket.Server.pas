@@ -26,8 +26,9 @@ type
 
     procedure ServerConnect(AContext: TIdContext);
     procedure ServerExecute(AContext: TIdContext);
+    procedure ServerDisconnect(AContext: TIdContext);
 
-    function GetDefaultEvent: TEvent;
+//    function GetDefaultEvent: TEvent;
   public
     class function New : iSocketServer;
 
@@ -60,6 +61,7 @@ begin
   FServer := TIdTCPServer.Create(nil);
   FServer.OnExecute := ServerExecute;
   FServer.OnConnect := ServerConnect;
+  FServer.OnDisconnect := ServerDisconnect;
 
   FClients := TDictionary<String, TIdContext>.Create;
 
@@ -75,12 +77,12 @@ begin
   inherited;
 end;
 
-function TSocketServer.GetDefaultEvent: TEvent;
-begin
-  if FEvent = nil then
-    FEvent := TEvent.Create;
-  Result := FEvent;
-end;
+//function TSocketServer.GetDefaultEvent: TEvent;
+//begin
+//  if FEvent = nil then
+//    FEvent := TEvent.Create;
+//  Result := FEvent;
+//end;
 
 class function TSocketServer.New: iSocketServer;
 begin
@@ -98,12 +100,21 @@ begin
 end;
 
 function TSocketServer.Send(SocketName, StringMessage: String): iSocketMessage;
+var
+  ReadBuffer : String;
 begin
   FClients.Items[SocketName].Connection.IOHandler.WriteLn(StringMessage);
 
-  sleep(1);
+  sleep(100);
 
-  Result := TSocketMessage.New( FClients.Items[SocketName].Connection.IOHandler.ReadLn );
+  FClients.Items[SocketName].Connection.IOHandler.ReadTimeout := 3000;
+
+  ReadBuffer := FClients.Items[SocketName].Connection.IOHandler.ReadLn;
+
+  if not FClients.Items[SocketName].Connection.IOHandler.ReadLnTimedout then
+    Result := TSocketMessage.New( ReadBuffer )
+  else
+    Result := TSocketMessage.New;
 end;
 
 procedure TSocketServer.ServerConnect(AContext: TIdContext);
@@ -118,10 +129,28 @@ begin
   JSONMessage := TJSONObject.ParseJSONValue(vMessage.JSONValue.GetValue<String>('message')) as TJSONObject;
 
   try
-    FClients.Add(JSONMessage.GetValue<String>('name'), aContext);
+    if not FClients.ContainsKey(JSONMessage.GetValue<String>('name')) then
+      FClients.Add(JSONMessage.GetValue<String>('name'), aContext);
   finally
     JSONMessage.Free;
   end;
+end;
+
+procedure TSocketServer.ServerDisconnect(AContext: TIdContext);
+var
+  I : Integer;
+  vContexts : TArray<TIdContext>;
+begin
+  vContexts := FClients.Values.ToArray;
+
+  for I := 0 to Pred(FClients.Count) do
+    begin
+      if vContexts[I].Equals(AContext) then
+        begin
+          FClients.Remove(FClients.Keys.ToArray[I]);
+          break;
+        end;
+    end;
 end;
 
 procedure TSocketServer.ServerExecute(AContext: TIdContext);

@@ -81,7 +81,10 @@ end;
 
 function TSocketMessage.JSONValue: TJSONValue;
 begin
-  Result := FBody;
+  if Assigned(FBody) then
+    Result := FBody
+  else
+    Result := TJSONObject.Create.AddPair('message', TJSONObject.Create.AddPair('error', 'No Content to this route.').ToJSON);
 end;
 
 end.
