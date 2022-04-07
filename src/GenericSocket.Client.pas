@@ -33,6 +33,8 @@ type
     procedure VerifySocketMessages;
     procedure CallbackFunction;
     procedure SendMessage(AMessage : String);
+    procedure TryReconect;
+    procedure CheckTask;
 
     function onConnect(Message : String) : String;
   public
@@ -64,9 +66,12 @@ begin
 
   try
     FClient.Connect;
-  finally
+
     FConnected := True;
-    FTask.Start;
+
+    CheckTask;
+  except
+
   end;
 end;
 
@@ -94,7 +99,13 @@ begin
     if FCallbacks.ContainsKey(Command) then
       SendMessage(FCallbacks[Command](ReadString));
   except
-    Self.Disconnet;
+    on e : Exception do
+      begin
+        Self.Disconnet;
+
+        if pos('Connection reset by peer.', e.Message) > 0 then
+          TThread.CreateAnonymousThread( TryReconect ).Start;
+      end;
   end;
 end;
 
@@ -106,6 +117,13 @@ begin
   FPort := vPort;
 
   Self.Connect;
+end;
+
+procedure TSocketClient.CheckTask;
+begin
+  FTask := TThread.CreateAnonymousThread( Self.VerifySocketMessages );
+  FTask.FreeOnTerminate := True;
+  FTask.Start;
 end;
 
 function TSocketClient.Connect(vHost: String; vPort: Integer;
@@ -123,8 +141,6 @@ end;
 constructor TSocketClient.Create;
 begin
   FCallbacks := TDictionary<String, TSocketResponse>.Create;
-  FTask := TThread.CreateAnonymousThread( Self.VerifySocketMessages );
-  FTask.FreeOnTerminate := False;
   FName := TGUID.NewGuid.ToString;
 
   FClient := TIdTCPClient.Create(nil);
@@ -139,7 +155,6 @@ destructor TSocketClient.Destroy;
 begin
   FCallbacks.Free;
   FClient.Free;
-  FTask.Free;
 
   inherited;
 end;
@@ -216,6 +231,19 @@ begin
   finally
     JSONMessage.Free;
   end;
+end;
+
+procedure TSocketClient.TryReconect;
+begin
+  while not FConnected do
+    begin
+      try
+        Self.Connect;
+      except
+      end;
+
+      sleep(1500);
+    end;
 end;
 
 procedure TSocketClient.VerifySocketMessages;
