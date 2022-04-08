@@ -92,7 +92,7 @@ begin
     ReadString := FClient.IOHandler.ReadLn;
 
     if Pos('?', ReadString) > 0 then
-      Command := Copy(ReadString, 0, Pos('?', ReadString))
+      Command := Copy(ReadString, 0, Pos('?', ReadString)-1)
     else
       Command := ReadString;
 
