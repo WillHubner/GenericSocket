@@ -155,7 +155,12 @@ end;
 
 procedure TSocketServer.ServerExecute(AContext: TIdContext);
 begin
-  //
+  if AContext.Connection.IOHandler.InputBufferIsEmpty then
+    begin
+      AContext.Connection.IOHandler.CheckForDataOnSource(500);
+      AContext.Connection.IOHandler.CheckForDisconnect;
+      if AContext.Connection.IOHandler.InputBufferIsEmpty then Exit;
+    end;
 end;
 
 function TSocketServer.Start: iSocketServer;
